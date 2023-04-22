@@ -1,0 +1,108 @@
+package com.app.AylluKuyuy.modelos;
+
+public class Integrantes {
+
+    private int idintegrante;
+    private int idfamilia;
+    private String nombre;
+    private String apellido;
+    private int DNI;
+    private int telefono;
+    private boolean lider;
+    private boolean discapacitado;
+    private boolean mascota;
+    private String roles;
+
+    public int getIdintegrante() {
+        return idintegrante;
+    }
+
+    public void setIdintegrante(int idintegrante) {
+        this.idintegrante = idintegrante;
+    }
+
+    public int getIdfamilia() {
+        return idfamilia;
+    }
+
+    public void setIdfamilia(int idfamilia) {
+        this.idfamilia = idfamilia;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public int getDNI() {
+        return DNI;
+    }
+
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public boolean isLider() {
+        return lider;
+    }
+
+    public void setLider(boolean lider) {
+        this.lider = lider;
+    }
+
+    public boolean isDiscapacitado() {
+        return discapacitado;
+    }
+
+    public void setDiscapacitado(boolean discapacitado) {
+        this.discapacitado = discapacitado;
+    }
+
+    public boolean isMascota() {
+        return mascota;
+    }
+
+    public void setMascota(boolean mascota) {
+        this.mascota = mascota;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
+
+    public Integrantes(int idintegrante, int idfamilia, String nombre, String apellido, int DNI, int telefono, boolean lider, boolean discapacitado, boolean mascota, String roles) {
+        this.idintegrante = idintegrante;
+        this.idfamilia = idfamilia;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.DNI = DNI;
+        this.telefono = telefono;
+        this.lider = lider;
+        this.discapacitado = discapacitado;
+        this.mascota = mascota;
+        this.roles = roles;
+    }
+}
