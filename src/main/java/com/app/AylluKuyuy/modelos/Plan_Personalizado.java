@@ -9,16 +9,16 @@ import jakarta.persistence.Id;
 public class Plan_Personalizado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idPlan;
+    private int idplan;
     private int idfamilia;
     private String plan;
 
-    public int getIdPlan() {
-        return idPlan;
+    public int getIdplan() {
+        return idplan;
     }
 
-    public void setIdPlan(int idPlan) {
-        this.idPlan = idPlan;
+    public void setIdplan(int idplan) {
+        this.idplan = idplan;
     }
 
     public int getIdfamilia() {
