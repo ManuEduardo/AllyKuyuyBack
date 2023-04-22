@@ -1,13 +1,29 @@
 package com.app.AylluKuyuy.modelos;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 
+@Entity
 public class Productos_Mochila {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idproducto_mochila;
     private int idMochila;
     private int idProducto;
     private boolean caducable;
     private Date fecha_caducidad;
+
+    public int getIdproducto_mochila() {
+        return idproducto_mochila;
+    }
+
+    public void setIdproducto_mochila(int idproducto_mochila) {
+        this.idproducto_mochila = idproducto_mochila;
+    }
 
     public int getIdMochila() {
         return idMochila;
@@ -38,13 +54,6 @@ public class Productos_Mochila {
     }
 
     public void setFecha_caducidad(Date fecha_caducidad) {
-        this.fecha_caducidad = fecha_caducidad;
-    }
-
-    public Productos_Mochila(int idMochila, int idProducto, boolean caducable, Date fecha_caducidad) {
-        this.idMochila = idMochila;
-        this.idProducto = idProducto;
-        this.caducable = caducable;
         this.fecha_caducidad = fecha_caducidad;
     }
 }

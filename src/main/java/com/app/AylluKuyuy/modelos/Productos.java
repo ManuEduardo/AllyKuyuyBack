@@ -1,7 +1,14 @@
 package com.app.AylluKuyuy.modelos;
 
-public class Productos {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Productos {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idproducto;
     private String nombre;
 
@@ -21,8 +28,4 @@ public class Productos {
         this.nombre = nombre;
     }
 
-    public Productos(int idproducto, String nombre) {
-        this.idproducto = idproducto;
-        this.nombre = nombre;
-    }
 }

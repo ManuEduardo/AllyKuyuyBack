@@ -1,7 +1,15 @@
 package com.app.AylluKuyuy.modelos;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Rutas {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idruta;
     private int idFamilia;
     private String nombre;
@@ -48,11 +56,5 @@ public class Rutas {
         this.tipo = tipo;
     }
 
-    public Rutas(int idruta, int idFamilia, String nombre, String encuentro, String prioridad) {
-        this.idruta = idruta;
-        this.idFamilia = idFamilia;
-        this.nombre = nombre;
-        this.detalle = encuentro;
-        this.tipo = prioridad;
-    }
+
 }

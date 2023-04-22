@@ -1,10 +1,17 @@
 package com.app.AylluKuyuy.modelos;
 
-public class Croquis {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Croquis {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idcroquis;
     private int idFamilia;
-    private long mapa;
+    private byte[] mapa;
     private int piso;
 
     public int getIdcroquis() {
@@ -23,11 +30,11 @@ public class Croquis {
         this.idFamilia = idFamilia;
     }
 
-    public long getMapa() {
+    public byte[] getMapa() {
         return mapa;
     }
 
-    public void setMapa(long mapa) {
+    public void setMapa(byte[] mapa) {
         this.mapa = mapa;
     }
 
@@ -36,13 +43,6 @@ public class Croquis {
     }
 
     public void setPiso(int piso) {
-        this.piso = piso;
-    }
-
-    public Croquis(int idcroquis, int idFamilia, long mapa, int piso) {
-        this.idcroquis = idcroquis;
-        this.idFamilia = idFamilia;
-        this.mapa = mapa;
         this.piso = piso;
     }
 }

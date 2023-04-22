@@ -1,7 +1,14 @@
 package com.app.AylluKuyuy.modelos;
 
-public class Integrantes {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Integrantes {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idintegrante;
     private int idfamilia;
     private String nombre;
@@ -93,16 +100,4 @@ public class Integrantes {
         this.roles = roles;
     }
 
-    public Integrantes(int idintegrante, int idfamilia, String nombre, String apellido, int DNI, int telefono, boolean lider, boolean discapacitado, boolean mascota, String roles) {
-        this.idintegrante = idintegrante;
-        this.idfamilia = idfamilia;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.DNI = DNI;
-        this.telefono = telefono;
-        this.lider = lider;
-        this.discapacitado = discapacitado;
-        this.mascota = mascota;
-        this.roles = roles;
-    }
 }

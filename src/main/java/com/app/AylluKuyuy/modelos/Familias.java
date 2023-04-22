@@ -1,13 +1,21 @@
 package com.app.AylluKuyuy.modelos;
 
-public class Familias {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Familias {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idfamilia;
     private int cantidad;
     private String direccion;
     private int cadigo_familiar;
-    private int password;
+    private int contrasena;
     private String nombre_familia;
+
 
     public int getIdfamilia() {
         return idfamilia;
@@ -41,12 +49,12 @@ public class Familias {
         this.cadigo_familiar = cadigo_familiar;
     }
 
-    public int getPassword() {
-        return password;
+    public int getContrasena() {
+        return contrasena;
     }
 
-    public void setPassword(int password) {
-        this.password = password;
+    public void setContrasena(int contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getNombre_familia() {
@@ -57,12 +65,5 @@ public class Familias {
         this.nombre_familia = nombre_familia;
     }
 
-    public Familias(int idfamilia, int cantidad, String direccion, int cadigo_familiar, int password, String nombre_familia) {
-        this.idfamilia = idfamilia;
-        this.cantidad = cantidad;
-        this.direccion = direccion;
-        this.cadigo_familiar = cadigo_familiar;
-        this.password = password;
-        this.nombre_familia = nombre_familia;
-    }
+
 }

@@ -1,7 +1,14 @@
 package com.app.AylluKuyuy.modelos;
 
-public class Plan_Personalizado {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
+public class Plan_Personalizado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPlan;
     private int idfamilia;
     private String plan;
@@ -30,9 +37,4 @@ public class Plan_Personalizado {
         this.plan = plan;
     }
 
-    public Plan_Personalizado(int idPlan, int idfamilia, String plan) {
-        this.idPlan = idPlan;
-        this.idfamilia = idfamilia;
-        this.plan = plan;
-    }
 }

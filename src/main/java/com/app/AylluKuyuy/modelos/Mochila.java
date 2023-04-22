@@ -1,9 +1,16 @@
 package com.app.AylluKuyuy.modelos;
 
-public class Mochila {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-    private int idFamilia;
+@Entity
+public class Mochila {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idMochila;
+    private int idFamilia;
 
     public int getIdFamilia() {
         return idFamilia;
@@ -18,11 +25,6 @@ public class Mochila {
     }
 
     public void setIdMochila(int idMochila) {
-        this.idMochila = idMochila;
-    }
-
-    public Mochila(int idFamilia, int idMochila) {
-        this.idFamilia = idFamilia;
         this.idMochila = idMochila;
     }
 

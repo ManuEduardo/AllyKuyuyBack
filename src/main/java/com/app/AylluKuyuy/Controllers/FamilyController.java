@@ -1,19 +1,30 @@
 package com.app.AylluKuyuy.Controllers;
 
+import com.app.AylluKuyuy.modelos.Familias;
+import com.app.AylluKuyuy.repositories.FamiliasRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-    @RequestMapping("/familia")
 public class FamilyController {
+    @Autowired
+    FamiliasRepository familiasRepository;
 
-    @GetMapping("/hello/{id}")
-    public String hello(@RequestParam(value = "name", defaultValue = "World") String name, @PathVariable(name = "id") int id) {
-        return String.format("Hello %s!" +
-                "", id);
+    /*@PostMapping("/ingresar")
+    public String validarLogin(@RequestBody Familias familias) {
+        int cod_fammiliar = familias.getCadigo_familiar();
+        int password = familias.getContrasena();
+        familiasRepository.buscarFamiliar(cod_fammiliar, password);
+        return "Ingrese :D";
+    }*/
+
+    @PostMapping("/registrar")
+    public String registrar(@RequestBody Familias familias) {
+        familiasRepository.save(familias);
+        return "Registrado :D";
     }
 
-//    @PostMapping("/ingresar")
-//    public String getStart(@RequestBody prueba leo){
-//        return model.save(leo);
-//    }
+
+
+
 }
