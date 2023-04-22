@@ -2,6 +2,7 @@ package com.app.AylluKuyuy.Controllers;
 
 import com.app.AylluKuyuy.modelos.Croquis;
 import com.app.AylluKuyuy.modelos.Familias;
+import com.app.AylluKuyuy.modelos.Rutas;
 import com.app.AylluKuyuy.repositories.CroquisRepository;
 import com.app.AylluKuyuy.repositories.FamiliasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,20 @@ public class CroquisController {
     @Autowired
     CroquisRepository croquisRepository;
 
+    @Autowired
+    FamiliasRepository familiasRepository;
+
     @PostMapping("/piso")
-    public Map<String, Object> registrarPiso(@RequestBody Croquis croquis) {
-        Map<String, Object> json = new HashMap<>();
-        croquisRepository.save(croquis);
-        json.put("error", false);
-        return json;
+    public Croquis registrarPiso(@RequestBody HashMap<String, Object> json) {
+        int codigo = (int) json.get("codigo_familiar");
+        int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
+
+        Croquis croquis = new Croquis();
+        //croquis.setIdfamilia(idfamilia);
+        croquis.setPiso((Integer) json.get("num_piso"));
+        croquis.setMapa((byte[]) json.get("foto"));
+
+        return croquisRepository.save(croquis);
     }
 
     @GetMapping("/piso")

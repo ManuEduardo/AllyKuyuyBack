@@ -41,7 +41,7 @@ public class RutasController {
     @DeleteMapping("/zona")
     public HashMap<String, Object> eliminarRutas(@RequestBody Rutas rutas){
         HashMap<String, Object> json = new HashMap<>();
-        rutasRepository.delete(rutas);
+        rutasRepository.deleteById(rutas.getIdruta());
         json.put("idzona", rutas.getIdruta());
         return json;
     }

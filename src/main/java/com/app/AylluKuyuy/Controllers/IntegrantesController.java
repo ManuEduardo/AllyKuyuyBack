@@ -26,16 +26,19 @@ public class IntegrantesController {
     }
 
     @GetMapping("/familia")
-    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Map<String, Object> request) {
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Familias familias) {
         Map<String, Object> json = new HashMap<>();
-        int codFamiliar = (int) request.get("codigo_familiar");
-        List<Integrantes> lista = integrantesRepository.findByObjIntegrantes(codFamiliar);
+        List<Integrantes> lista = integrantesRepository.findByObjIntegrantes(familias.getCodigo_familiar());
         json.put("integrante",lista);
         return json;
+    }
 
-
-
-
+    @DeleteMapping("/familia")
+    public HashMap<String, Object> eliminarFamiliar(@RequestBody Integrantes integrante){
+        integrantesRepository.deleteById(integrante.getIdintegrante());
+        HashMap<String, Object> json = new HashMap<>();
+        json.put("idIntegrante", integrante.getIdintegrante());
+        return json;
     }
 
 }

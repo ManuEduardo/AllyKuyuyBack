@@ -11,4 +11,6 @@ public interface PlanRepository extends JpaRepository<Plan_Personalizado, Intege
     @Query("select p from Plan_Personalizado p inner join Familias f on f.idfamilia = p.idfamilia where f.codigo_familiar = :codigo_familiar")
     ArrayList<Plan_Personalizado> getPlanes(@Param("codigo_familiar") int codigo_familiar);
 
+
+
 }

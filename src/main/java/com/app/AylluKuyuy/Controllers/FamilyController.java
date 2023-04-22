@@ -3,8 +3,6 @@ package com.app.AylluKuyuy.Controllers;
 import com.app.AylluKuyuy.modelos.Familias;
 import com.app.AylluKuyuy.modelos.Integrantes;
 import com.app.AylluKuyuy.repositories.FamiliasRepository;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -59,9 +57,9 @@ public class FamilyController {
 
 
     @GetMapping("/home")
-    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Map<String, Object> request) {
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Familias familias) {
         Map<String, Object> json = new HashMap<>();
-        int codFamiliar = (int) request.get("codigo_familiar");
+        int codFamiliar = familias.getCodigo_familiar();
         String datos = familiasRepository.findByCodigoFamiliar(codFamiliar);
         String[] partes1 = datos.split(",");
         String dato1 = partes1[0];
@@ -83,9 +81,9 @@ public class FamilyController {
     }
 
     @GetMapping("/hogar")
-    public Map<String, Object> obtenerInformacionHogar(@RequestBody Map<String, Object> request) {
+    public Map<String, Object> obtenerInformacionHogar(@RequestBody Familias familia) {
         Map<String, Object> json = new HashMap<>();
-        int codFamiliar = (int) request.get("codigo_familiar");
+        int codFamiliar = familia.getCodigo_familiar();
 
         List<String> familias = familiasRepository.findByInformacionFamilia(codFamiliar);
         System.out.println(familias);

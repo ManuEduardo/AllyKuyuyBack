@@ -56,5 +56,4 @@ public class Rutas {
         this.tipo = tipo;
     }
 
-
 }
