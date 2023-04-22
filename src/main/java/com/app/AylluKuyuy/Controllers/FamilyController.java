@@ -1,12 +1,15 @@
 package com.app.AylluKuyuy.Controllers;
 
 import com.app.AylluKuyuy.modelos.Familias;
+import com.app.AylluKuyuy.modelos.Integrantes;
 import com.app.AylluKuyuy.repositories.FamiliasRepository;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,30 +58,28 @@ public class FamilyController {
     }
 
 
-//    @GetMapping("/home")
-//    public Map<String, Object> obtenerInformacionFamiliar(@RequestParam("cod_familiar") int codFamiliar) {
-//
-//        // Lógica para obtener información del familiar según el código enviado
-//        Familia familia = familiaRepository.buscarFamiliaPorCodFamiliar(codFamiliar); // Ejemplo de método para buscar la familia en el repositorio
-//
-//        // Verificar si se encontró la familia
-//        if (familia != null) {
-//            // Crear objeto JSON con la información de retorno
-//            Map<String, Object> json = new HashMap<>();
-//            json.put("error", false);
-//            json.put("detalles", "Consulta exitosa");
-//            json.put("cod_familia", familia.getCodigoFamilia());
-//            json.put("nombre_familiar", familia.getNombreFamiliar());
-//            json.put("integrantes", familia.getIntegrantes());
-//            return ResponseEntity.ok(json); // Retornar respuesta exitosa con los datos de la familia
-//        } else {
-//            // Crear objeto JSON con el mensaje de error
-//            Map<String, Object> json = new HashMap<>();
-//            json.put("error", true);
-//            json.put("detalles", "Familiar no encontrado");
-//            return ResponseEntity.ok(json); // Retornar respuesta exitosa con el mensaje de error
-//        }
-//    }
+    @GetMapping("/home")
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestParam("codigo_familiar") int codFamiliar) {
+        Map<String, Object> json = new HashMap<>();
+        String datos = familiasRepository.findByCodigoFamiliar(codFamiliar);
+        String[] partes1 = datos.split(",");
+        String dato1 = partes1[0];
+        String dato2 = partes1[1];
+
+        List<Integrantes> lista = familiasRepository.findByObjIntegrantes(codFamiliar);
+
+        if (familiasRepository.findByObjIntegrantes(codFamiliar) == null){
+            json.put("error", true);
+            json.put("detalles", "Error en home");
+            return json;
+        }else {
+            json.put("codigo_familiar", dato1);
+            json.put("nombre_familia", dato2);
+            json.put("integrantes",lista);
+        }
+        return json;
+
+    }
 
 
 }

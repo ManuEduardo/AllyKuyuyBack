@@ -39,7 +39,6 @@ public class Integrantes {
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -99,5 +98,6 @@ public class Integrantes {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
 
 }
