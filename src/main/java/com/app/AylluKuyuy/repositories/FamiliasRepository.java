@@ -10,6 +10,8 @@ public interface FamiliasRepository extends JpaRepository<Familias, Integer>{
     @Query("SELECT f FROM Familias f WHERE f.codigo_familiar = :codigoFamiliar AND f.contrasena = :contrasena")
     Familias buscarFamiliar(@Param("codigoFamiliar") int codigoFamiliar, @Param("contrasena") int contrasena);
 
+    @Query("select f.idfamilia from Familias f where f.codigo_familiar=:codigo_familiar")
+    int getIdFamiliaByCodFamilia(@Param("codigo_familiar") int codigo_familiar);
 }
 
 //@Repository

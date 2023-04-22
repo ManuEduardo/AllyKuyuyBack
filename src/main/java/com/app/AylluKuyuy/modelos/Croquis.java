@@ -10,7 +10,7 @@ public class Croquis {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idcroquis;
-    private int idFamilia;
+    private int idfamilia;
     private byte[] mapa;
     private int piso;
 
@@ -22,12 +22,12 @@ public class Croquis {
         this.idcroquis = idcroquis;
     }
 
-    public int getIdFamilia() {
-        return idFamilia;
+    public int getIdfamilia() {
+        return idfamilia;
     }
 
-    public void setIdFamilia(int idFamilia) {
-        this.idFamilia = idFamilia;
+    public void setIdfamilia(int idfamilia) {
+        this.idfamilia = idfamilia;
     }
 
     public byte[] getMapa() {
