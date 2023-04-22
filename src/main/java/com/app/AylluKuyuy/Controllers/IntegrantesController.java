@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -20,6 +23,19 @@ public class IntegrantesController {
     public String registrarFamilia(@RequestBody Integrantes integrantes) {
         integrantesRepository.save(integrantes);
         return "Integrante Registrado :D";
+    }
+
+    @GetMapping("/familia")
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Map<String, Object> request) {
+        Map<String, Object> json = new HashMap<>();
+        int codFamiliar = (int) request.get("codigo_familiar");
+        List<Integrantes> lista = integrantesRepository.findByObjIntegrantes(codFamiliar);
+        json.put("integrante",lista);
+        return json;
+
+
+
+
     }
 
 }

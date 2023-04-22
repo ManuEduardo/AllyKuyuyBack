@@ -26,6 +26,10 @@ public interface FamiliasRepository extends JpaRepository<Familias, Integer>{
     @Query("SELECT i FROM Integrantes i INNER JOIN Familias f on f.idfamilia = i.idfamilia WHERE f.codigo_familiar = :codFamiliar")
     List<Integrantes> findByObjIntegrantes(@Param("codFamiliar") int codFamiliar);
 
+    @Query("SELECT f.cantidad,f.codigo_familiar,CONCAT(i.nombre,' ',i.apellido) ,f.nombre_familia FROM Familias f INNER JOIN Integrantes i on i.idfamilia = f.idfamilia WHERE f.codigo_familiar = :codFamiliar AND i.lider = true")
+    List<String> findByInformacionFamilia(@Param("codFamiliar") int codFamiliar);
+
+
 
 
 }

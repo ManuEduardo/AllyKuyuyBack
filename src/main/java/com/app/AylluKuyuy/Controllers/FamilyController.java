@@ -59,8 +59,9 @@ public class FamilyController {
 
 
     @GetMapping("/home")
-    public Map<String, Object> obtenerInformacionFamiliar(@RequestParam("codigo_familiar") int codFamiliar) {
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Map<String, Object> request) {
         Map<String, Object> json = new HashMap<>();
+        int codFamiliar = (int) request.get("codigo_familiar");
         String datos = familiasRepository.findByCodigoFamiliar(codFamiliar);
         String[] partes1 = datos.split(",");
         String dato1 = partes1[0];
@@ -77,6 +78,23 @@ public class FamilyController {
             json.put("nombre_familia", dato2);
             json.put("integrantes",lista);
         }
+        return json;
+
+    }
+
+    @GetMapping("/hogar")
+    public Map<String, Object> obtenerInformacionHogar(@RequestBody Map<String, Object> request) {
+        Map<String, Object> json = new HashMap<>();
+        int codFamiliar = (int) request.get("codigo_familiar");
+
+        List<String> familias = familiasRepository.findByInformacionFamilia(codFamiliar);
+        System.out.println(familias);
+
+//        json.put("cantidad",familias.get(0));
+//        json.put("codigo_familiar",familias.get(1));
+//        json.put("nombre",familias.get(2));
+//        json.put("apellido",familias.get(3));
+//        json.put("nombre_familia",familias.get(3));
         return json;
 
     }
