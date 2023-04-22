@@ -10,13 +10,13 @@ public class FamilyController {
     @Autowired
     FamiliasRepository familiasRepository;
 
-    /*@PostMapping("/ingresar")
+    @PostMapping("/ingresar")
     public String validarLogin(@RequestBody Familias familias) {
-        int cod_fammiliar = familias.getCadigo_familiar();
+        int cod_fammiliar = familias.getCodigo_familiar();
         int password = familias.getContrasena();
         familiasRepository.buscarFamiliar(cod_fammiliar, password);
         return "Ingrese :D";
-    }*/
+    }
 
     @PostMapping("/registrar")
     public String registrar(@RequestBody Familias familias) {

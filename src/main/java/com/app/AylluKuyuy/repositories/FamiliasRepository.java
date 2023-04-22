@@ -3,10 +3,12 @@ import com.app.AylluKuyuy.modelos.Familias;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface FamiliasRepository extends JpaRepository<Familias, Integer>{
-    /*@Query("select codigo_famiiar, contrasena from familias where codigo_famiiar = :cod_familiar and contrasena = :password")
-    void buscarFamiliar(@Param("cod_familiar") int cod_familiar, @Param("password") int password);*/
+    @Query("SELECT f FROM Familias f WHERE f.codigo_familiar = :codigoFamiliar AND f.contrasena = :contrasena")
+    void buscarFamiliar(@Param("codigoFamiliar") int codigoFamiliar, @Param("contrasena") int contrasena);
 
 
 }

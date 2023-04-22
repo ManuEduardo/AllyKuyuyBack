@@ -12,7 +12,7 @@ public class Familias {
     private int idfamilia;
     private int cantidad;
     private String direccion;
-    private int cadigo_familiar;
+    private int codigo_familiar;
     private int contrasena;
     private String nombre_familia;
 
@@ -41,12 +41,12 @@ public class Familias {
         this.direccion = direccion;
     }
 
-    public int getCadigo_familiar() {
-        return cadigo_familiar;
+    public int getCodigo_familiar() {
+        return codigo_familiar;
     }
 
-    public void setCadigo_familiar(int cadigo_familiar) {
-        this.cadigo_familiar = cadigo_familiar;
+    public void setCodigo_familiar(int codigo_familiar) {
+        this.codigo_familiar = codigo_familiar;
     }
 
     public int getContrasena() {
