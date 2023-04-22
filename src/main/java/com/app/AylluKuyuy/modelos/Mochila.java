@@ -9,23 +9,23 @@ import jakarta.persistence.Id;
 public class Mochila {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idMochila;
-    private int idFamilia;
+    private int idmochila;
+    private int idfamilia;
 
-    public int getIdFamilia() {
-        return idFamilia;
+    public int getIdfamilia() {
+        return idfamilia;
     }
 
-    public void setIdFamilia(int idFamilia) {
-        this.idFamilia = idFamilia;
+    public void setIdfamilia(int idFamilia) {
+        this.idfamilia = idFamilia;
     }
 
-    public int getIdMochila() {
-        return idMochila;
+    public int getIdmochila() {
+        return idmochila;
     }
 
-    public void setIdMochila(int idMochila) {
-        this.idMochila = idMochila;
+    public void setIdmochila(int idMochila) {
+        this.idmochila = idMochila;
     }
 
 }

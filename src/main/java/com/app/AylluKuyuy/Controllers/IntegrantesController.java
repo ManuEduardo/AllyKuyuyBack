@@ -18,11 +18,26 @@ public class IntegrantesController {
 
     @Autowired
     IntegrantesRepository integrantesRepository;
+    @Autowired
+    FamiliasRepository familiasRepository;
+
 
     @PostMapping("/familia")
-    public String registrarFamilia(@RequestBody Integrantes integrantes) {
-        integrantesRepository.save(integrantes);
-        return "Integrante Registrado :D";
+    public Integrantes registrarFamilia(@RequestBody HashMap<String, Object> integrantes) {
+        int codigo=(int) integrantes.get("codigo_familiar");
+        int id_familia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
+        Integrantes obj = new Integrantes();
+        obj.setIdfamilia(id_familia);
+        obj.setNombre((String) integrantes.get("nombre"));
+        obj.setApellido((String) integrantes.get("apellido"));
+        obj.setDni((int) integrantes.get("dni"));
+        obj.setTelefono((int) integrantes.get("telefono"));
+        obj.setLider((boolean) integrantes.get("lider"));
+        obj.setMascota((boolean) integrantes.get("mascota"));
+        obj.setDiscapacitado((boolean) integrantes.get("discapacidad"));
+        obj.setRoles((String) integrantes.get("roles"));
+
+        return integrantesRepository.save(obj);
     }
 
     @GetMapping("/familia")

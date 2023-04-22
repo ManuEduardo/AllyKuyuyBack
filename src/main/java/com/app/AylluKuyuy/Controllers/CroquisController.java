@@ -27,7 +27,7 @@ public class CroquisController {
         int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
 
         Croquis croquis = new Croquis();
-        //croquis.setIdfamilia(idfamilia);
+        croquis.setIdfamilia(idfamilia);
         croquis.setPiso((Integer) json.get("num_piso"));
         croquis.setMapa((byte[]) json.get("foto"));
 

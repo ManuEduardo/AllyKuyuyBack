@@ -12,8 +12,8 @@ public class Productos_Mochila {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idproducto_mochila;
-    private int idMochila;
-    private int idProducto;
+    private int idmochila;
+    private int idproducto;
     private boolean caducable;
     private Date fecha_caducidad;
 
@@ -25,20 +25,20 @@ public class Productos_Mochila {
         this.idproducto_mochila = idproducto_mochila;
     }
 
-    public int getIdMochila() {
-        return idMochila;
+    public int getIdmochila() {
+        return idmochila;
     }
 
-    public void setIdMochila(int idMochila) {
-        this.idMochila = idMochila;
+    public void setIdmochila(int idMochila) {
+        this.idmochila = idMochila;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public int getIdproducto() {
+        return idproducto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setIdproducto(int idProducto) {
+        this.idproducto = idProducto;
     }
 
     public boolean isCaducable() {

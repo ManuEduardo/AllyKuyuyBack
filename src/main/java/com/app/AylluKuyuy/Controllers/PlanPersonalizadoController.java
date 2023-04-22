@@ -21,19 +21,38 @@ public class PlanPersonalizadoController {
     FamiliasRepository familiasRepository;
 
     @GetMapping
-    public ArrayList<Plan_Personalizado> getPlanes(@RequestBody Familias familias){
-        return planRepository.getPlanes(familias.getCodigo_familiar());
+    public ArrayList<HashMap<String, Object>> getPlanes(@RequestBody Familias familias){
+        ArrayList<Plan_Personalizado> planes = planRepository.getPlanes(familias.getCodigo_familiar());
+        ArrayList<HashMap<String, Object>> maps = new ArrayList<>();
+        int paso = 1;
+        for (Plan_Personalizado plane : planes) {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("idPaso", plane.getIdplan());
+            map.put("paso", paso);
+            map.put("detalle", plane.getPlan());
+            maps.add(map);
+            paso++;
+        }
+        return maps;
     }
 
     @PostMapping("/paso")
-    public Plan_Personalizado registrarPaso(@RequestBody Plan_Personalizado plan){
-        return planRepository.save(plan);
+    public Plan_Personalizado registrarPaso(@RequestBody HashMap<String, Object> plan){
+        int codigo = (int) plan.get("codigo_familiar");
+        int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
+
+        Plan_Personalizado obj = new Plan_Personalizado();
+        obj.setIdfamilia(idfamilia);
+        obj.setPlan((String) plan.get("detalle"));
+
+        return planRepository.save(obj);
     }
 
     @DeleteMapping("/paso")
     public ArrayList<HashMap<String, Object>> eliminarPaso(@RequestBody HashMap<String, Object> plan){
-        /*int id = (int) plan.get("idPlan");
-        planRepository.deleteById(id);*/
+
+        int id = (int) plan.get("idPlan");
+        planRepository.deleteById(id);
 
         int codigo = (int) plan.get("codigo_familiar");
 

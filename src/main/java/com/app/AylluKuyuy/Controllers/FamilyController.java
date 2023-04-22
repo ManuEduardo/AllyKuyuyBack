@@ -2,7 +2,9 @@ package com.app.AylluKuyuy.Controllers;
 
 import com.app.AylluKuyuy.modelos.Familias;
 import com.app.AylluKuyuy.modelos.Integrantes;
+import com.app.AylluKuyuy.modelos.Mochila;
 import com.app.AylluKuyuy.repositories.FamiliasRepository;
+import com.app.AylluKuyuy.repositories.MochilasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,9 @@ import java.util.Map;
 public class FamilyController {
     @Autowired
     FamiliasRepository familiasRepository;
+    @Autowired
+    MochilasRepository mochilasRepository;
+
 
     @PostMapping("/ingresar")
     public Map<String, Object> validarLogin(@RequestBody Familias familias) {
@@ -38,6 +43,10 @@ public class FamilyController {
     public Map<String, Object> registrar(@RequestBody Familias familias) {
 
         try {
+            Familias familias1 = familiasRepository.save(familias);
+            Mochila mochila = new Mochila();
+            mochila.setIdfamilia(familias1.getIdfamilia());
+            mochilasRepository.save(mochila);
 
             Map<String, Object> json = new HashMap<>();
             json.put("error", false);
@@ -85,14 +94,13 @@ public class FamilyController {
         Map<String, Object> json = new HashMap<>();
         int codFamiliar = familia.getCodigo_familiar();
 
-        List<String> familias = familiasRepository.findByInformacionFamilia(codFamiliar);
-        System.out.println(familias);
+        String familias = familiasRepository.findByInformacionFamilia(codFamiliar);
+        String [] aux  = familias.split(",");
 
-//        json.put("cantidad",familias.get(0));
-//        json.put("codigo_familiar",familias.get(1));
-//        json.put("nombre",familias.get(2));
-//        json.put("apellido",familias.get(3));
-//        json.put("nombre_familia",familias.get(3));
+        json.put("cantidad",aux[0]);
+        json.put("codigo_familiar",aux[1]);
+        json.put("lider",aux[2]);
+        json.put("nombre_familia",aux[3]);
         return json;
 
     }
