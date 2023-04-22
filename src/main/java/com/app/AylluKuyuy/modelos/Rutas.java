@@ -11,7 +11,7 @@ public class Rutas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idruta;
-    private int idFamilia;
+    private int idfamilia;
     private String nombre;
     private String detalle;
     private String tipo;
@@ -24,12 +24,12 @@ public class Rutas {
         this.idruta = idruta;
     }
 
-    public int getIdFamilia() {
-        return idFamilia;
+    public int getIdfamilia() {
+        return idfamilia;
     }
 
-    public void setIdFamilia(int idFamilia) {
-        this.idFamilia = idFamilia;
+    public void setIdfamilia(int idFamilia) {
+        this.idfamilia = idFamilia;
     }
 
     public String getNombre() {

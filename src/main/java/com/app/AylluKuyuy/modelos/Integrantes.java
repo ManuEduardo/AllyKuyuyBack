@@ -13,7 +13,7 @@ public class Integrantes {
     private int idfamilia;
     private String nombre;
     private String apellido;
-    private int DNI;
+    private int dni;
     private int telefono;
     private boolean lider;
     private boolean discapacitado;
@@ -52,12 +52,12 @@ public class Integrantes {
         this.apellido = apellido;
     }
 
-    public int getDNI() {
-        return DNI;
+    public int getDni() {
+        return dni;
     }
 
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
+    public void setDni(int DNI) {
+        this.dni = DNI;
     }
 
     public int getTelefono() {

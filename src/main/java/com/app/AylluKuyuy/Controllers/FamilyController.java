@@ -15,7 +15,7 @@ public class FamilyController {
         int cod_fammiliar = familias.getCodigo_familiar();
         int password = familias.getContrasena();
         familiasRepository.buscarFamiliar(cod_fammiliar, password);
-        return "Ingrese :D";
+        return "Sida";
     }
 
     @PostMapping("/registrar")
@@ -23,6 +23,9 @@ public class FamilyController {
         familiasRepository.save(familias);
         return "Registrado :D";
     }
+
+
+
 
 
 
