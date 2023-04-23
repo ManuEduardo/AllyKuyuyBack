@@ -34,8 +34,8 @@ public class RutasController {
     }
 
     @GetMapping("/zona")
-    public ArrayList<Rutas> getAllRutas(@RequestBody Familias familias){
-        return rutasRepository.getAllRutas(familias.getCodigo_familiar());
+    public ArrayList<Rutas> getAllRutas(@RequestParam("codigo_familiar") int codigo){
+        return rutasRepository.getAllRutas(codigo);
     }
 
     @DeleteMapping("/zona")

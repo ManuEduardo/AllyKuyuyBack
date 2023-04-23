@@ -66,17 +66,16 @@ public class FamilyController {
 
 
     @GetMapping("/home")
-    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Familias familias) {
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestParam("codigo_familiar") int codigo) {
         Map<String, Object> json = new HashMap<>();
-        int codFamiliar = familias.getCodigo_familiar();
-        String datos = familiasRepository.findByCodigoFamiliar(codFamiliar);
+        String datos = familiasRepository.findByCodigoFamiliar(codigo);
         String[] partes1 = datos.split(",");
         String dato1 = partes1[0];
         String dato2 = partes1[1];
 
-        List<Integrantes> lista = familiasRepository.findByObjIntegrantes(codFamiliar);
+        List<Integrantes> lista = familiasRepository.findByObjIntegrantes(codigo);
 
-        if (familiasRepository.findByObjIntegrantes(codFamiliar) == null){
+        if (familiasRepository.findByObjIntegrantes(codigo) == null){
             json.put("error", true);
             json.put("detalles", "Error en home");
             return json;
@@ -90,11 +89,9 @@ public class FamilyController {
     }
 
     @GetMapping("/hogar")
-    public Map<String, Object> obtenerInformacionHogar(@RequestBody Familias familia) {
+    public Map<String, Object> obtenerInformacionHogar(@RequestParam("codigo_familiar") int codigo) {
         Map<String, Object> json = new HashMap<>();
-        int codFamiliar = familia.getCodigo_familiar();
-
-        String familias = familiasRepository.findByInformacionFamilia(codFamiliar);
+        String familias = familiasRepository.findByInformacionFamilia(codigo);
         String [] aux  = familias.split(",");
 
         json.put("cantidad",aux[0]);

@@ -41,9 +41,9 @@ public class IntegrantesController {
     }
 
     @GetMapping("/familia")
-    public Map<String, Object> obtenerInformacionFamiliar(@RequestBody Familias familias) {
+    public Map<String, Object> obtenerInformacionFamiliar(@RequestParam("codigo_familiar") int codigo) {
         Map<String, Object> json = new HashMap<>();
-        List<Integrantes> lista = integrantesRepository.findByObjIntegrantes(familias.getCodigo_familiar());
+        List<Integrantes> lista = integrantesRepository.findByObjIntegrantes(codigo);
         json.put("integrante",lista);
         return json;
     }

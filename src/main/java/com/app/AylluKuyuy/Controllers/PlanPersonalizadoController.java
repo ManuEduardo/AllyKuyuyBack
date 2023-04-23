@@ -21,8 +21,8 @@ public class PlanPersonalizadoController {
     FamiliasRepository familiasRepository;
 
     @GetMapping
-    public ArrayList<HashMap<String, Object>> getPlanes(@RequestBody Familias familias){
-        ArrayList<Plan_Personalizado> planes = planRepository.getPlanes(familias.getCodigo_familiar());
+    public ArrayList<HashMap<String, Object>> getPlanes(@RequestParam("codigo_familiar") int codigo){
+        ArrayList<Plan_Personalizado> planes = planRepository.getPlanes(codigo);
         ArrayList<HashMap<String, Object>> maps = new ArrayList<>();
         int paso = 1;
         for (Plan_Personalizado plane : planes) {
