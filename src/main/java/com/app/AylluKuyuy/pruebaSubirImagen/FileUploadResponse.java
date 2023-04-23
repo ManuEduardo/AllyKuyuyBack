@@ -1,4 +1,4 @@
-package com.app.AylluKuyuy.modelos;
+package com.app.AylluKuyuy.pruebaSubirImagen;
 
 public class FileUploadResponse {
 

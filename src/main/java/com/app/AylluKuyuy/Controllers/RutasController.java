@@ -21,7 +21,7 @@ public class RutasController {
 
     @PostMapping("/zona")
     public Rutas registrarZona(@RequestBody HashMap<String, Object> json) {
-        int codigo = (int) json.get("codigo_familiar");
+        int codigo = Integer.parseInt((String)json.get("codigo_familiar"));
         int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
 
         Rutas rutas = new Rutas();

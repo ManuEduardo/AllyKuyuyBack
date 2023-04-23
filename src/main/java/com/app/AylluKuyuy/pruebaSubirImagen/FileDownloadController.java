@@ -1,22 +1,10 @@
-package com.app.AylluKuyuy.Controllers;
-
-import java.io.File;
-import java.io.IOException;
+package com.app.AylluKuyuy.pruebaSubirImagen;
 
 import com.app.AylluKuyuy.modelos.Croquis;
-import com.app.AylluKuyuy.modelos.FileDownloadUtil;
-import com.app.AylluKuyuy.modelos.ImageService;
+import com.app.AylluKuyuy.pruebaSubirImagen.FileDownloadUtil;
 import com.app.AylluKuyuy.repositories.CroquisRepository;
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

@@ -38,7 +38,7 @@ public class PlanPersonalizadoController {
 
     @PostMapping("/paso")
     public Plan_Personalizado registrarPaso(@RequestBody HashMap<String, Object> plan){
-        int codigo = (int) plan.get("codigo_familiar");
+        int codigo = Integer.parseInt((String)plan.get("codigo_familiar"));
         int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
 
         Plan_Personalizado obj = new Plan_Personalizado();
@@ -51,10 +51,10 @@ public class PlanPersonalizadoController {
     @DeleteMapping("/paso")
     public ArrayList<HashMap<String, Object>> eliminarPaso(@RequestBody HashMap<String, Object> plan){
 
-        int id = (int) plan.get("idPlan");
+        int id = Integer.parseInt((String)plan.get("idPaso"));
         planRepository.deleteById(id);
 
-        int codigo = (int) plan.get("codigo_familiar");
+        int codigo = Integer.parseInt((String)plan.get("codigo_familiar"));
 
         ArrayList<Plan_Personalizado> planes = planRepository.getPlanes(codigo);
         ArrayList<HashMap<String, Object>> maps = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.app.AylluKuyuy.modelos;
+package com.app.AylluKuyuy.pruebaSubirImagen;
 
 import java.io.IOException;
 import java.nio.file.Files;

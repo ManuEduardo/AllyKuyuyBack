@@ -1,4 +1,4 @@
-package com.app.AylluKuyuy.Controllers;
+package com.app.AylluKuyuy.pruebaSubirImagen;
 
 import com.app.AylluKuyuy.modelos.Familias;
 import com.app.AylluKuyuy.modelos.Integrantes;
@@ -24,7 +24,7 @@ public class IntegrantesController {
 
     @PostMapping("/familia")
     public Integrantes registrarFamilia(@RequestBody HashMap<String, Object> integrantes) {
-        int codigo=(int) integrantes.get("codigo_familiar");
+        int codigo= Integer.parseInt((String) integrantes.get("codigo_familiar"));
         int id_familia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
         Integrantes obj = new Integrantes();
         obj.setIdfamilia(id_familia);

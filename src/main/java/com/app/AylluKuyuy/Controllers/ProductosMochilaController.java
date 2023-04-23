@@ -24,7 +24,7 @@ public class ProductosMochilaController {
 
     @PostMapping("/mochila/item")
     public Productos_Mochila registrarItemMochila(@RequestBody HashMap<String, Object> item) {
-        int codigo = (int) item.get("codigo_familiar");
+        int codigo = Integer.parseInt((String)item.get("codigo_familiar"));
         String nombre = (String) item.get("nombre");
         boolean caduce = (boolean) item.get("caduce");
 
@@ -63,7 +63,7 @@ public class ProductosMochilaController {
     @GetMapping("/mochila")
     public Map<String, Object> obtenerInformacionHogar(@RequestBody Familias familias) {
         Map<String, Object> json = new HashMap<>();
-        int codFamiliar = (int) familias.getCodigo_familiar();
+        int codFamiliar = familias.getCodigo_familiar();
 
         String data = productosMochilaR.findByInformacionMochila(codFamiliar);
         String [] aux = data.split(",");

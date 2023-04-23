@@ -1,4 +1,4 @@
-package com.app.AylluKuyuy.modelos;
+package com.app.AylluKuyuy.pruebaSubirImagen;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;

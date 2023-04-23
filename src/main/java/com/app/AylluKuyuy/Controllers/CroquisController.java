@@ -23,7 +23,7 @@ public class CroquisController {
 
     @PostMapping("/piso")
     public Croquis registrarPiso(@RequestBody HashMap<String, Object> json) {
-        int codigo = (int) json.get("codigo_familiar");
+        int codigo = Integer.parseInt((String) json.get("codigo_familiar"));
         int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
 
         Croquis croquis = new Croquis();

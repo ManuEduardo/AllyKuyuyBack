@@ -1,23 +1,14 @@
-package com.app.AylluKuyuy.Controllers;
+package com.app.AylluKuyuy.pruebaSubirImagen;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import com.app.AylluKuyuy.modelos.Croquis;
-import com.app.AylluKuyuy.modelos.FileUploadResponse;
-import com.app.AylluKuyuy.modelos.FileUploadUtil;
 import com.app.AylluKuyuy.repositories.CroquisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.app.AylluKuyuy.modelos.ImageService.convertImageToBytes;
+import static com.app.AylluKuyuy.pruebaSubirImagen.ImageService.convertImageToBytes;
 
 
 @RestController
@@ -32,18 +23,21 @@ public class FileUploadController {
 
         Croquis croquis = new Croquis();
         croquis.setMapa(convertImageToBytes(multipartFile));
-        croquis.setIdcroquis(1);
         croquis.setIdfamilia(1);
         croquis.setPiso(1);
 
         return croquisRepository.save(croquis);
     }
 
+    @GetMapping("/mapa")
+    public Croquis uploadFile(){
+        return croquisRepository.findById(1).get();
+    }
+
     @PostMapping("/pruebita")
-    public String uploadFile2(@RequestBody HashMap<String, Object> request) throws IOException {
-        MultipartFile multipartFile = (MultipartFile) request.get("file");
+    public String uploadFile2(@RequestParam("file") MultipartFile file) throws IOException {
         Croquis croquis = new Croquis();
-        croquis.setMapa(convertImageToBytes(multipartFile));
+        croquis.setMapa(convertImageToBytes(file));
         croquis.setIdcroquis(1);
         croquis.setIdfamilia(1);
         croquis.setPiso(1);
