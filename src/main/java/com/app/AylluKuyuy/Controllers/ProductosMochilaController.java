@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,19 +63,22 @@ public class ProductosMochilaController {
     }
 
     @GetMapping("/mochila")
-    public Map<String, Object> obtenerInformacionHogar(@RequestBody Familias familias) {
-        Map<String, Object> json = new HashMap<>();
-        int codFamiliar = familias.getCodigo_familiar();
+    public ArrayList<Map<String, Object>> obtenerInformacionHogar(@RequestParam("codigo_familiar") int codigo) throws ParseException {
+        ArrayList<Map<String, Object>> jsonArray = new ArrayList<>();
+        ArrayList<String> data = productosMochilaR.findByInformacionMochila(codigo);
 
-        String data = productosMochilaR.findByInformacionMochila(codFamiliar);
-        String [] aux = data.split(",");
+        for (String item : data) {
+            String [] aux = item.split(",");
+            Map<String, Object> json = new HashMap<>();
 
-        json.put("id_item",aux[0]);
-        json.put("nombre",aux[1]);
-        json.put("caduce",Boolean.valueOf(aux[2]));
-        json.put("fecha", aux[3]);
-        return json;
+            json.put("id_item",aux[0]);
+            json.put("nombre",aux[1]);
+            json.put("caduce",Boolean.valueOf(aux[2]));
+            json.put("fecha", aux[3]);
+            jsonArray.add(json);
+        }
 
+        return jsonArray;
     }
 
 }

@@ -38,7 +38,7 @@ public class PlanPersonalizadoController {
 
     @PostMapping("/paso")
     public Plan_Personalizado registrarPaso(@RequestBody HashMap<String, Object> plan){
-        int codigo = Integer.parseInt((String)plan.get("codigo_familiar"));
+        int codigo = (int)plan.get("codigo_familiar");
         int idfamilia = familiasRepository.getIdFamiliaByCodFamilia(codigo);
 
         Plan_Personalizado obj = new Plan_Personalizado();

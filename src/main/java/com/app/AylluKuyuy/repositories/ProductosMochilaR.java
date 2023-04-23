@@ -21,6 +21,6 @@ public interface ProductosMochilaR extends JpaRepository<Productos_Mochila, Inte
             "INNER JOIN Mochila m on m.idmochila = pm.idmochila " +
             "INNER JOIN Familias f on f.idfamilia = m.idfamilia " +
             "WHERE f.codigo_familiar = :codigo_familiar")
-    String findByInformacionMochila(@Param("codigo_familiar") int codigo_familiar);
+    ArrayList<String> findByInformacionMochila(@Param("codigo_familiar") int codigo_familiar);
 
 }
