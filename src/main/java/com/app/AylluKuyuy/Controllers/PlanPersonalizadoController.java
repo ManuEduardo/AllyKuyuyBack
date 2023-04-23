@@ -49,14 +49,10 @@ public class PlanPersonalizadoController {
     }
 
     @DeleteMapping("/paso")
-    public ArrayList<HashMap<String, Object>> eliminarPaso(@RequestBody HashMap<String, Object> plan){
+    public ArrayList<HashMap<String, Object>> eliminarPaso(@RequestParam("idPaso") int idPaso,@RequestParam("codigo_familiar") int codigo_familiar){
 
-        int id = Integer.parseInt((String)plan.get("idPaso"));
-        planRepository.deleteById(id);
-
-        int codigo = Integer.parseInt((String)plan.get("codigo_familiar"));
-
-        ArrayList<Plan_Personalizado> planes = planRepository.getPlanes(codigo);
+        planRepository.deleteById(idPaso);
+        ArrayList<Plan_Personalizado> planes = planRepository.getPlanes(codigo_familiar);
         ArrayList<HashMap<String, Object>> maps = new ArrayList<>();
 
         int paso = 1;

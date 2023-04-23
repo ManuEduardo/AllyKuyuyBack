@@ -53,10 +53,10 @@ public class ProductosMochilaController {
     }
 
     @DeleteMapping("/mochila/item")
-    public HashMap<String, Object> eliminarMochila(@RequestBody Productos_Mochila item){
-        productosMochilaR.deleteById(item.getIdproducto_mochila());
+    public HashMap<String, Object> eliminarMochila(@RequestParam("idproducto_mochila") int idproducto_mochila){
+        productosMochilaR.deleteById(idproducto_mochila);
         HashMap<String, Object> json = new HashMap<>();
-        json.put("idItem", item.getIdproducto_mochila());
+        json.put("idItem", idproducto_mochila);
         return json;
     }
 
