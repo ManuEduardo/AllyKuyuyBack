@@ -2,6 +2,7 @@ package com.app.AylluKuyuy.repositories;
 
 import com.app.AylluKuyuy.modelos.Productos_Mochila;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,7 +16,7 @@ public interface ProductosMochilaR extends JpaRepository<Productos_Mochila, Inte
     @Query("select m.idmochila from Mochila m where m.idfamilia = :idfamilia")
     int getidMochila(@Param("idfamilia") int idfamilia);
 
-    @Query("SELECT pm.idproducto_mochila,p.nombre,pm.caducable,pm.fecha_caducidad " +
+    @Query("SELECT pm.idproducto_mochila,p.nombre,pm.caducable,pm.fecha_caducidad,pm.disponible " +
             "FROM Productos_Mochila pm " +
             "INNER JOIN Productos p on p.idproducto = pm.idproducto " +
             "INNER JOIN Mochila m on m.idmochila = pm.idmochila " +
@@ -23,4 +24,7 @@ public interface ProductosMochilaR extends JpaRepository<Productos_Mochila, Inte
             "WHERE f.codigo_familiar = :codigo_familiar")
     ArrayList<String> findByInformacionMochila(@Param("codigo_familiar") int codigo_familiar);
 
+    @Modifying
+    @Query("update Productos_Mochila pm set pm.disponible=:disponible where pm.idproducto_mochila=:iditem")
+    void cambio(@Param("iditem") int iditem, @Param("disponible") boolean disponible);
 }

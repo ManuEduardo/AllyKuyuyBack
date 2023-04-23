@@ -17,6 +17,16 @@ public class Productos_Mochila {
     private boolean caducable;
     private Date fecha_caducidad;
 
+    private boolean disponible;
+
+    public boolean isDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
+    }
+
     public int getIdproducto_mochila() {
         return idproducto_mochila;
     }
