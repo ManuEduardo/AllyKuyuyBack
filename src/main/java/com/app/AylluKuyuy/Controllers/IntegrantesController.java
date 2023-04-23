@@ -1,4 +1,4 @@
-package com.app.AylluKuyuy.pruebaSubirImagen;
+package com.app.AylluKuyuy.Controllers;
 
 import com.app.AylluKuyuy.modelos.Familias;
 import com.app.AylluKuyuy.modelos.Integrantes;
@@ -49,10 +49,10 @@ public class IntegrantesController {
     }
 
     @DeleteMapping("/familia")
-    public HashMap<String, Object> eliminarFamiliar(@RequestBody Integrantes integrante){
-        integrantesRepository.deleteById(integrante.getIdintegrante());
+    public HashMap<String, Object> eliminarFamiliar(@RequestParam("idIntegrante") int idIntegrante){
+        integrantesRepository.deleteById(idIntegrante);
         HashMap<String, Object> json = new HashMap<>();
-        json.put("idIntegrante", integrante.getIdintegrante());
+        json.put("idIntegrante", idIntegrante);
         return json;
     }
 
