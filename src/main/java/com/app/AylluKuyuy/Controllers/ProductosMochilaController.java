@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -74,11 +75,34 @@ public class ProductosMochilaController {
             json.put("id_item",aux[0]);
             json.put("nombre",aux[1]);
             json.put("caduce",Boolean.valueOf(aux[2]));
-            json.put("fecha", aux[3]);
+            String fechaOriginal = aux[3];
+            if (fechaOriginal == null) {
+                json.put("fecha", aux[3]);
+            } else {
+                SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+                SimpleDateFormat nuevoFormato = new SimpleDateFormat("yyyy-MM-dd");
+                if (!fechaOriginal.equalsIgnoreCase("null")) {
+                    Date fecha = formatoOriginal.parse(fechaOriginal);
+                    json.put("fecha", nuevoFormato.format(fecha));
+                    json.put("caduco",caduco(fecha));
+                } else {
+                    json.put("fecha", "null");
+                    json.put("caduco",false);
+                }
+            }
+
+
             jsonArray.add(json);
+
         }
 
         return jsonArray;
+    }
+
+    public boolean caduco(Date fecha){
+        LocalDate localDate = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate hoy = LocalDate.now();
+        return hoy.compareTo(localDate) >= 0;
     }
 
 }
