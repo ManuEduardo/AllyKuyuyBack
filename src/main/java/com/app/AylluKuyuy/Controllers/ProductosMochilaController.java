@@ -81,7 +81,7 @@ public class ProductosMochilaController {
         return json;
     }
 
-    @GetMapping("/productos")
+    /*@GetMapping("/productos")
     public ArrayList<HashMap<String, Object>> getAllProductos() {
         ArrayList<String> nombres = productosRepository.findAllByNombre();
         ArrayList<HashMap<String, Object>> json = new ArrayList<>();
@@ -90,6 +90,40 @@ public class ProductosMochilaController {
             map.put("nombre", nombre);
             json.add(map);
         }
+        return json;
+    }*/
+
+    @GetMapping("/productos")
+    public ArrayList<HashMap<String, Object>> getProductsVencidos(@RequestParam("codigo_familiar") int codigo) {
+
+        ArrayList<String> nombres = productosRepository.findAllByNombre(codigo, new Date());
+        ArrayList<HashMap<String, Object>> json = new ArrayList<>();
+        for (String nombre : nombres) {
+            String[] aux1 = nombre.split(",");
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("nombre", aux1[0]);
+
+            String fechaOriginal = aux1[1];
+            if (fechaOriginal == null) {
+                map.put("fecha", aux1[1]);
+            } else {
+                SimpleDateFormat formatoOriginal = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
+                SimpleDateFormat nuevoFormato = new SimpleDateFormat("yyyy-MM-dd");
+                if (!fechaOriginal.equalsIgnoreCase("null")) {
+                    Date fecha = null;
+                    try {
+                        fecha = formatoOriginal.parse(fechaOriginal);
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                    map.put("fecha", nuevoFormato.format(fecha));
+                } else {
+                    map.put("fecha", "null");
+                }
+            }
+            json.add(map);
+        }
+        System.out.println(json);
         return json;
     }
 
