@@ -41,7 +41,7 @@ public class ProductosMochilaController {
         String fechaStr = (String) item.get("fecha");
         Date fecha = null;
 
-        if (fechaStr == "null") {
+        if (!fechaStr.equals("")) {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                 fecha = dateFormat.parse(fechaStr);
@@ -71,12 +71,11 @@ public class ProductosMochilaController {
 
 
         HashMap<String, Object> json = new HashMap<>();
-        json.put("idproducto_mochila", productosMochila.getIdproducto_mochila());
-        json.put("idproducto", idProducto);
-        json.put("idmochila", idmochila);
-        json.put("caducable", caduce);
-
-        json.put("fecha_caducidad", fechaStr);
+        json.put("id_item", productosMochila.getIdproducto_mochila());
+        json.put("nombre", nombre);
+        json.put("caduce", caduce);
+        json.put("caduco", fecha != null && caduco(fecha));
+        json.put("fecha", fechaStr);
         json.put("disponible", disponible);
 
         return json;
@@ -101,7 +100,7 @@ public class ProductosMochilaController {
     }
 
     @DeleteMapping("/mochila/item")
-    public HashMap<String, Object> eliminarMochila(@RequestParam("idproducto_mochila") int idproducto_mochila) {
+    public HashMap<String, Object> eliminarMochila(@RequestParam("iditem") int idproducto_mochila) {
         productosMochilaR.deleteById(idproducto_mochila);
         HashMap<String, Object> json = new HashMap<>();
         json.put("idItem", idproducto_mochila);

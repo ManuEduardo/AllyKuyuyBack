@@ -9,5 +9,5 @@ import java.util.ArrayList;
 
 public interface CroquisRepository extends JpaRepository<Croquis, Integer> {
     @Query("select c from Croquis c inner join Familias f on f.idfamilia=c.idfamilia where f.codigo_familiar=:codigo_familiar")
-    ArrayList<Croquis> getCroquisByCodFamiliar(@Param("codigo_familiar") int codigo_familiar);
+    Croquis getCroquisByCodFamiliar(@Param("codigo_familiar") int codigo_familiar);
 }
